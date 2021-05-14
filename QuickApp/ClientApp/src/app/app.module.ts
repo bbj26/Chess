@@ -49,16 +49,6 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { AboutComponent } from './components/about/about.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
-import { TodoDemoComponent } from './components/controls/todo-demo.component';
-import { StatisticsDemoComponent } from './components/controls/statistics-demo.component';
-import { NotificationsViewerComponent } from './components/controls/notifications-viewer.component';
-import { SearchBoxComponent } from './components/controls/search-box.component';
-import { UserInfoComponent } from './components/controls/user-info.component';
-import { UserPreferencesComponent } from './components/controls/user-preferences.component';
-import { UsersManagementComponent } from './components/controls/users-management.component';
-import { RolesManagementComponent } from './components/controls/roles-management.component';
-import { RoleEditorComponent } from './components/controls/role-editor.component';
-
 
 @NgModule({
   imports: [
@@ -89,13 +79,8 @@ import { RoleEditorComponent } from './components/controls/role-editor.component
     LoginComponent,
     HomeComponent,
     SettingsComponent,
-    UsersManagementComponent, UserInfoComponent, UserPreferencesComponent,
-    RolesManagementComponent, RoleEditorComponent,
     AboutComponent,
     NotFoundComponent,
-    NotificationsViewerComponent,
-    SearchBoxComponent,
-    StatisticsDemoComponent, TodoDemoComponent,
     EqualValidator,
     LastElementDirective,
     AutofocusDirective,
