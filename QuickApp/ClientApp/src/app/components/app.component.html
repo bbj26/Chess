@@ -16,9 +16,6 @@
           <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link" routerLink=""><i class="fa fa-home"></i></a>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="canViewCustomers">
-            <a class="nav-link" routerLink="/customers">{{'mainMenu.Customers' | translate}}</a>
-          </li>
           <li class="nav-item" routerLinkActive="active" *ngIf="canViewProducts">
             <a class="nav-link" routerLink="/products">{{'mainMenu.Products' | translate}}</a>
           </li>
