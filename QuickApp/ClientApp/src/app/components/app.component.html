@@ -16,15 +16,6 @@
           <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link" routerLink=""><i class="fa fa-home"></i></a>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="canViewCustomers">
-            <a class="nav-link" routerLink="/customers">{{'mainMenu.Customers' | translate}}</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="canViewProducts">
-            <a class="nav-link" routerLink="/products">{{'mainMenu.Products' | translate}}</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="canViewOrders">
-            <a class="nav-link" routerLink="/orders">{{'mainMenu.Orders' | translate}}</a>
-          </li>
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/about">{{'mainMenu.About' | translate}}</a>
           </li>
@@ -86,9 +77,7 @@
   <footer class="app-component footer fixed-bottom">
     <div class="container">
       <p class="text-center text-muted">
-        <span style="font-style:italic">quick</span>App &copy; {{getYear()}}
-        <a href="https://www.ebenmonney.com" target="_blank">www.ebenmonney.com</a>
-        <!--<span class="small display-none">- Powered by <a href="https://www.ebenmonney.com/quickapp" target="_blank"><span style="font-style:italic">quick</span>App</a></span>-->
+        <span style="font-style:italic">Chess app</span> &copy; {{getYear()}}
       </p>
     </div>
   </footer>
