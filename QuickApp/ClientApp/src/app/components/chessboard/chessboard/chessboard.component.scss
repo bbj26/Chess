@@ -1,0 +1,8 @@
+#boardContainer {
+  width: 401px;
+  height: 401px;
+  background-color: black;
+  display: grid;
+  grid-template-columns: repeat(8, 50px);
+  grid-template-rows: repeat(8, 50px);
+}

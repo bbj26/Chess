@@ -63,6 +63,8 @@ import { UsersManagementComponent } from './components/controls/users-management
 import { RolesManagementComponent } from './components/controls/roles-management.component';
 import { RoleEditorComponent } from './components/controls/role-editor.component';
 import { GameSettingsComponent } from './components/game-settings/game-settings.component';
+import { ChessboardComponent } from './components/chessboard/chessboard/chessboard.component';
+import { ChessboardTileComponent } from './components/chessboard/chessboard-tile/chessboard-tile/chessboard-tile.component';
 
 
 @NgModule({
@@ -110,7 +112,9 @@ import { GameSettingsComponent } from './components/game-settings/game-settings.
     BootstrapTabDirective,
     BootstrapToggleDirective,
     GroupByPipe,
-    GameSettingsComponent
+    GameSettingsComponent,
+    ChessboardComponent,
+    ChessboardTileComponent
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },

@@ -1,0 +1,7 @@
+<div id="boardContainer">
+  <app-chessboard-tile *ngFor="let mark of chessboardMarks; let i = index"
+                       [tileMark]="chessboardMarks[i]"
+                       [tileColor]="tileColors[i]"
+                       [tileNumber]="63 - i">
+  </app-chessboard-tile>
+</div>

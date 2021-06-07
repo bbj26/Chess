@@ -1,4 +1,4 @@
-<form #gameSettingsForm="ngForm" (ngSubmit)="onSubmit()">
+<form #gameSettingsForm="ngForm" (ngSubmit)="onSubmit()" [hidden]="submitted">
 
   <h3>Select your preferred match settings</h3>
 
@@ -22,13 +22,5 @@
 </form>
 
 <div [hidden]="!submitted">
-  <h3>You submitted the following:</h3>
-  <div class="row">
-    <div class="col-xs-3">Duration: </div>
-    <div class="col-xs-9">{{ model.duration }} min</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3">Colour: </div>
-    <div class="col-xs-9">{{ model.colour }}</div>
-  </div>
+  <app-chessboard></app-chessboard>
 </div>
