@@ -1,4 +1,4 @@
-<form #gameSettingsForm="ngForm" (ngSubmit)="onSubmit()" [hidden]="submitted">
+<form #gameSettingsForm="ngForm" (ngSubmit)="onSubmit()" [hidden]="!submitted">
 
   <h3>Select your preferred match settings</h3>
 
@@ -21,6 +21,6 @@
   <button type="submit" class="btn btn-success" [disabled]="!gameSettingsForm.form.valid">Confirm</button>
 </form>
 
-<div [hidden]="!submitted">
+<div>
   <app-chessboard></app-chessboard>
 </div>

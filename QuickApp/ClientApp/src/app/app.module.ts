@@ -65,6 +65,7 @@ import { RoleEditorComponent } from './components/controls/role-editor.component
 import { GameSettingsComponent } from './components/game-settings/game-settings.component';
 import { ChessboardComponent } from './components/chessboard/chessboard/chessboard.component';
 import { ChessboardTileComponent } from './components/chessboard/chessboard-tile/chessboard-tile/chessboard-tile.component';
+import { ChessPieceComponent } from './components/chess-piece/chess-piece.component';
 
 
 @NgModule({
@@ -114,7 +115,8 @@ import { ChessboardTileComponent } from './components/chessboard/chessboard-tile
     GroupByPipe,
     GameSettingsComponent,
     ChessboardComponent,
-    ChessboardTileComponent
+    ChessboardTileComponent,
+    ChessPieceComponent
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },
