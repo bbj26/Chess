@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { ChessPiece } from '../../../../models/chess-piece.model'
 
 @Component({
@@ -12,15 +12,15 @@ export class ChessboardTileComponent implements OnInit {
   @Input() public tileColor = '';
   @Input() public tileNumber = '';
   @Input() public chessPieces: ChessPiece[];
-
-  public occupiedByPiece: ChessPiece = new ChessPiece();
-  
-  
+  @Output() tileEvent: EventEmitter<any> = new EventEmitter<any>();
  
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
+  public occupiedByPiece: ChessPiece = new ChessPiece();
 
   public getPieceOnThisTile() {
     if (!this.chessPieces) return null;
@@ -33,20 +33,30 @@ export class ChessboardTileComponent implements OnInit {
     return currentPiece ? currentPiece : null;
   }
 
+  //assign piece data to this.occupiedByPiece variable
   public assignPieceData(pieceObject: ChessPiece) {
     this.occupiedByPiece = Object.assign(this.occupiedByPiece, pieceObject);
   }
 
+
+  //emits the clicked chess piece data and/or tile number to chessboard component
   public handleClick() {
+
+    var dataToSendToChessboard = {
+      chessPiece: this.occupiedByPiece,
+      tileNumber: this.tileNumber
+    }
+    
     if (this.getPieceOnThisTile()) {
       this.assignPieceData(this.getPieceOnThisTile());
-      console.log(this.occupiedByPiece)
+      this.tileEvent.emit(dataToSendToChessboard);
     }
     else {
-      console.log("empty tile " + this.tileNumber)
+      dataToSendToChessboard.chessPiece = null;
+      this.tileEvent.emit(dataToSendToChessboard);
     }
-      
   }
+
 
 }
 

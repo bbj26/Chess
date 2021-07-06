@@ -3,7 +3,8 @@
                        [tileMark]="chessboard.chessboardMarks[i]"
                        [tileColor]="chessboard.tileColors[i]"
                        [tileNumber]="chessboard.tileNumbers[i]"
-                       [chessPieces]="chessboard.piecesArray">
+                       [chessPieces]="chessboard.piecesArray"
+                       (tileEvent)="attemptMovePiece($event)">
   </app-chessboard-tile>
 </div>
 

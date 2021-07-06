@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChessPiece } from '../../models/chess-piece.model';
 
 @Component({
@@ -15,7 +15,7 @@ export class ChessPieceComponent implements OnInit {
     if (!this.chessPieces) return null;
     var currentPiece = null;
     this.chessPieces.forEach(piece => {
-      if (this.occupiedTileNo == piece.position) {
+      if (this.occupiedTileNo == piece.position && piece.active == true) {
         currentPiece = piece;
       }
     })
@@ -31,12 +31,10 @@ export class ChessPieceComponent implements OnInit {
     this.piece.underAttack = false;
     this.piece.touched = false;
     this.piece.imgUrl = 'https://upload.wikimedia.org/wikipedia/commons/4/49/Chess_qlt60.png'
-    this.piece.position = '16';
-    //this.emitPieceId();
   }
 
   handleClick() {
-    console.log("piece clicked, piece id: " + this.piece);
+    console.log("piece clicked");
   }
   
   public piece: ChessPiece;

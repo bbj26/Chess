@@ -15,7 +15,7 @@ export class Chessboard {
   public verticalAxis: string[];
   public horizontalAxis: string[];
   public piecesArray: ChessPiece[];
-  
+
   markBoard = () => {
     let counter = 0;
     for (let j = this.verticalAxis.length - 1; j >= 0; j--) {
@@ -34,8 +34,77 @@ export class Chessboard {
   createPieces() {
     this.piecesArray = [];
     this.piecesArray.push(new ChessPiece('1', 'pijun', 1, 'black', true, '6', [], false, true, false, null));
-    this.piecesArray.push(new ChessPiece('2', 'pijun', 1, 'black', true, '7', [], false, true, false, null));
-    this.piecesArray.push(new ChessPiece('2', 'pijun', 1, 'black', true, '8', [], false, true, false, null));
+    this.piecesArray.push(new ChessPiece('2', 'pijun', 1, 'white', true, '7', [], false, true, false, null));
+    this.piecesArray.push(new ChessPiece('3', 'pijun', 1, 'black', true, '8', [], false, true, false, null));
+  }
+
+  resetPieceProperties(piece: ChessPiece) {
+    piece.active = undefined;
+    piece.canAttack = undefined;
+    piece.id = undefined;
+    piece.imgUrl = undefined;
+    piece.name = undefined;
+    piece.position = undefined;
+    piece.potentialMoves = undefined;
+    piece.team = undefined;
+    piece.touched = undefined;
+    piece.underAttack = undefined;
+    piece.value = undefined;
+  }
+
+  //Legal moves are contained in potentialMoves array of each piece
+  isLegalMove(chessPiece: ChessPiece, newPosition: string) {
+    var activePiece = this.piecesArray.find(piece => piece.id == chessPiece.id);
+    return activePiece.potentialMoves.some(move => move == newPosition);
+  }
+
+  canAttackPiece(attacker: ChessPiece, defender: ChessPiece) {
+    if (attacker.active && defender.active && (attacker.team != defender.team) && this.isLegalMove(attacker, defender.position)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  //makes move to an empty tile if the move follows game rules
+  movePiece(pieceId: string, newPosition: string) {
+    this.piecesArray.forEach(piece => {
+      if (piece.id == pieceId) { 
+        if (this.isLegalMove(piece, newPosition)) {            // uncomment later to check legality of move
+          piece.position = newPosition;
+        } 
+      }
+    })
+  }
+
+  attackPiece(attackingPieceId: string, attackedPieceId: string) {
+    var attackingPiece: ChessPiece;
+    var attackedPiece: ChessPiece;
+
+    this.piecesArray.forEach(piece => {
+      if (piece.id == attackingPieceId) {
+        attackingPiece = piece;
+        //console.log("attacking piece is " + attackingPiece.id);
+        //console.log(attackingPiece);
+      }
+
+      if (piece.id == attackedPieceId) {
+        attackedPiece = piece;
+        //console.log("attacked piece is " + attackedPiece.id);
+        //console.log(attackedPiece);
+      }
+    });
+    
+    //Check if attacking piece can attack attacked piece and proceed with attack if true
+    if (this.canAttackPiece(attackingPiece, attackedPiece)) {
+      this.piecesArray.forEach(piece => {
+        if (piece.id == attackedPieceId && piece.id != attackingPiece.id) {
+          piece.active = false;
+        }
+      });
+      this.movePiece(attackingPieceId, attackedPiece.position);
+      //console.log("Successfully eat " + attackedPiece.id);
+    }
   }
 
 }
@@ -43,24 +112,3 @@ export class Chessboard {
 
 
 
-/*
-  - Ploča je numerirala svako polje --> DONE
-  - Ploča mora imati importan model Piece --> DONE
-  - Ploča mora imati funckiju za napraviti novi piece i dati mu piece.startingPosition --> DONE, func createPieces
-  - Ploča mora proslijediti polju piece.Starting postion --> @input() --> DONE
-  - Polje mora proslijediti Piecu svoj polje.tileNumber -> @Input --> DONE
-  - Polje mora prikazati Piece ako je polje.tileNumber == piece.starting postion --> DONE
-
-  - chessboard mora imati varijable startPoint i endPoint -> koordinate polja tipa broj tj. string u ovom slučaju. Inicijalno su te vrijednosti NULL.
-    Klikom na polje, polje šalje chessboardu vrijednost figure koja se nalazi na njemu, u suprotnom šalje null. Polje provjerava ima li vrijednost !null u var startingPoint
-      - ako nema, onda je ovaj klik oznacio startingPoint
-      - ako ima, znaci da startingPoint postoji pa je ovaj klik potencijalni endPoint
-      - provjerava se je li taj potez legalan
-        - ako je, figura se pomiče sa starting na end point
-        - ako nije, potez se odbacuje i obe varijable se vracaju u NULL
-*/
-
-
-/*
-  - chessboard mora imati uvid u svako polje i koja se figura nalazi na pojedinom polju kao i detalje o svakoj pojedinoj figuri
-*/

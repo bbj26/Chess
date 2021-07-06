@@ -66,6 +66,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\models\chess-piece.model.spec.ts" />
+    <None Remove="ClientApp\src\app\models\chessboard-tile.model.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
