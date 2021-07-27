@@ -1,0 +1,19 @@
+#container-black, #container-white {
+    height: 50px;
+    width: 150px;
+    display: grid;
+    grid-template-columns: repeat(4, 35px);
+}
+
+img {
+    height: 30px;
+    width: 30px;
+}
+
+#container-black img:hover {
+    transform: scale(1.2);
+}
+
+#container-white img:hover {
+    transform: scale(1.2);
+}

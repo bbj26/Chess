@@ -49,6 +49,7 @@ export class ChessboardTileComponent implements OnInit {
     
     if (this.getPieceOnThisTile()) {
       this.assignPieceData(this.getPieceOnThisTile());
+      dataToSendToChessboard.chessPiece = this.occupiedByPiece;
       this.tileEvent.emit(dataToSendToChessboard);
     }
     else {
