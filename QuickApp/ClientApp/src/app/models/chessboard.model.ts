@@ -1,6 +1,7 @@
 import { ActivationEnd } from '@angular/router';
 import { ChessPiece } from '../models/chess-piece.model';
 import { Pawn } from '../models/pawn.model';
+import { Rook } from '../models/rook.model';
 
 export class Chessboard {
   constructor() {
@@ -52,25 +53,26 @@ export class Chessboard {
     let pawnWhite1: ChessPiece = new Pawn('44', 'pawn', 1, 'white', true, '48', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/0/04/Chess_plt60.png');
     let pawnWhite2: ChessPiece = new Pawn('45', 'pawn', 1, 'white', true, '49', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/0/04/Chess_plt60.png');
     let pawnWhite3: ChessPiece = new Pawn('46', 'pawn', 1, 'white', true, '50', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/0/04/Chess_plt60.png');
-    let pawnWhite4: ChessPiece = new Pawn('47', 'pawn', 1, 'white', true, '29', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/0/04/Chess_plt60.png');
+    let pawnWhite4: ChessPiece = new Pawn('47', 'pawn', 1, 'white', true, '51', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/0/04/Chess_plt60.png');
     let pawnWhite5: ChessPiece = new Pawn('48', 'pawn', 1, 'white', true, '52', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/0/04/Chess_plt60.png');
     let pawnWhite6: ChessPiece = new Pawn('49', 'pawn', 1, 'white', true, '53', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/0/04/Chess_plt60.png');
     let pawnWhite7: ChessPiece = new Pawn('50', 'pawn', 1, 'white', true, '54', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/0/04/Chess_plt60.png');
     let pawnWhite8: ChessPiece = new Pawn('51', 'pawn', 1, 'white', true, '55', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/0/04/Chess_plt60.png');
 
-    let pawnBlack1: ChessPiece = new Pawn('52', 'pawn', 1, 'black', true, '38', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png');
+    let pawnBlack1: ChessPiece = new Pawn('52', 'pawn', 1, 'black', true, '8', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png');
     let pawnBlack2: ChessPiece = new Pawn('53', 'pawn', 1, 'black', true, '9', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png');
     let pawnBlack3: ChessPiece = new Pawn('54', 'pawn', 1, 'black', true, '10', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png');
     let pawnBlack4: ChessPiece = new Pawn('55', 'pawn', 1, 'black', true, '11', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png');
-    let pawnBlack5: ChessPiece = new Pawn('56', 'pawn', 1, 'black', true, '40', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png');
+    let pawnBlack5: ChessPiece = new Pawn('56', 'pawn', 1, 'black', true, '12', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png');
     let pawnBlack6: ChessPiece = new Pawn('57', 'pawn', 1, 'black', true, '13', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png');
     let pawnBlack7: ChessPiece = new Pawn('58', 'pawn', 1, 'black', true, '14', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png');
     let pawnBlack8: ChessPiece = new Pawn('59', 'pawn', 1, 'black', true, '15', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png');
 
-    this.piecesArray.push(new ChessPiece('1', 'pijun', 1, 'black', true, '6', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_blt60.png'));
-    this.piecesArray.push(new ChessPiece('2', 'pijun', 1, 'white', true, '7', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Chess_kdt60.png'));
-    this.piecesArray.push(new ChessPiece('3', 'pijun', 1, 'black', true, '5', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Chess_kdt60.png'));
-    this.piecesArray.push(pawnWhite1, pawnWhite2, pawnWhite3, pawnWhite4, pawnWhite5, pawnWhite6, pawnWhite7, pawnWhite8, pawnBlack1, pawnBlack2, pawnBlack3, pawnBlack4, pawnBlack5, pawnBlack6,pawnBlack7, pawnBlack8);
+    let rookWhite1: ChessPiece = new Rook('40', 'rook', 5, 'white', true, '56', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chess_rlt60.png');
+    let rookWhite2: ChessPiece = new Rook('41', 'rook', 5, 'white', true, '63', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chess_rlt60.png');
+    let rookBlack1: ChessPiece = new Rook('42', 'rook', 5, 'black', true, '0', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Chess_rdt60.png');
+    let rookBlack2: ChessPiece = new Rook('43', 'rook', 5, 'black', true, '7', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Chess_rdt60.png');
+    this.piecesArray.push(pawnWhite1, pawnWhite2, pawnWhite3, pawnWhite4, pawnWhite5, pawnWhite6, pawnWhite7, pawnWhite8, pawnBlack1, pawnBlack2, pawnBlack3, pawnBlack4, pawnBlack5, pawnBlack6,pawnBlack7, pawnBlack8, rookWhite1, rookWhite2, rookBlack1, rookBlack2);
     //console.log(this.piecesArray);
     //console.log(pawnWhite);
   }

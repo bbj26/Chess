@@ -50,14 +50,14 @@ export class Pawn extends ChessPiece {
 
         if (this.checkPositionLeftBorder() == true) {
           if (piece.name == 'pawn' && piece.team == "white" && piece.position == (Number(this.position) + 1).toString()) {
-            this.potentialMoves.push((Number(piece.position) + 9).toString());
-            this.potentialEnPassantMoves.push((Number(piece.position) + 9).toString());
+            this.potentialMoves.push((Number(piece.position) + 8).toString());
+            this.potentialEnPassantMoves.push((Number(piece.position) + 8).toString());
             this.canAttack == true;
            }
         } else if (this.checkPositionRightBorder() == true) {
           if (piece.name == 'pawn' && piece.team == "white" && piece.position == (Number(this.position) - 1).toString()) {
-            this.potentialMoves.push((Number(piece.position) + 7).toString());
-            this.potentialEnPassantMoves.push((Number(piece.position) + 7).toString());
+            this.potentialMoves.push((Number(piece.position) + 8).toString());
+            this.potentialEnPassantMoves.push((Number(piece.position) + 8).toString());
             this.canAttack == true;
           }
         } else {
