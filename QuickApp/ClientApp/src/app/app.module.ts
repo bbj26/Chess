@@ -66,6 +66,7 @@ import { GameSettingsComponent } from './components/game-settings/game-settings.
 import { ChessboardComponent } from './components/chessboard/chessboard/chessboard.component';
 import { ChessboardTileComponent } from './components/chessboard/chessboard-tile/chessboard-tile/chessboard-tile.component';
 import { ChessPieceComponent } from './components/chess-piece/chess-piece.component';
+import { PawnPromotionComponent } from './components/pawn-promotion/pawn-promotion.component';
 
 
 @NgModule({
@@ -116,7 +117,8 @@ import { ChessPieceComponent } from './components/chess-piece/chess-piece.compon
     GameSettingsComponent,
     ChessboardComponent,
     ChessboardTileComponent,
-    ChessPieceComponent
+    ChessPieceComponent,
+    PawnPromotionComponent
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },
