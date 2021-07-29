@@ -2,6 +2,7 @@ import { ActivationEnd } from '@angular/router';
 import { ChessPiece } from '../models/chess-piece.model';
 import { Pawn } from '../models/pawn.model';
 import { Rook } from '../models/rook.model';
+import { Bishop } from './bishop.model';
 
 export class Chessboard {
   constructor() {
@@ -72,7 +73,12 @@ export class Chessboard {
     let rookWhite2: ChessPiece = new Rook('41', 'rook', 5, 'white', true, '63', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chess_rlt60.png');
     let rookBlack1: ChessPiece = new Rook('42', 'rook', 5, 'black', true, '0', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Chess_rdt60.png');
     let rookBlack2: ChessPiece = new Rook('43', 'rook', 5, 'black', true, '7', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Chess_rdt60.png');
-    this.piecesArray.push(pawnWhite1, pawnWhite2, pawnWhite3, pawnWhite4, pawnWhite5, pawnWhite6, pawnWhite7, pawnWhite8, pawnBlack1, pawnBlack2, pawnBlack3, pawnBlack4, pawnBlack5, pawnBlack6,pawnBlack7, pawnBlack8, rookWhite1, rookWhite2, rookBlack1, rookBlack2);
+
+    let bishopWhite1: ChessPiece = new Bishop('60', 'bishop', 3, 'white', true, '58', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_blt60.png');
+    let bishopWhite2: ChessPiece = new Bishop('61', 'bishop', 3, 'white', true, '61', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_blt60.png');
+    let bishopBlack1: ChessPiece = new Bishop('62', 'bishop', 3, 'black', true, '2', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/8/81/Chess_bdt60.png');
+    let bishopBlack2: ChessPiece = new Bishop('63', 'bishop', 3, 'black', true, '5', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/8/81/Chess_bdt60.png');
+    this.piecesArray.push(pawnWhite1, pawnWhite2, pawnWhite3, pawnWhite4, pawnWhite5, pawnWhite6, pawnWhite7, pawnWhite8, pawnBlack1, pawnBlack2, pawnBlack3, pawnBlack4, pawnBlack5, pawnBlack6, pawnBlack7, pawnBlack8, rookWhite1, rookWhite2, rookBlack1, rookBlack2, bishopWhite1, bishopWhite2, bishopBlack1, bishopBlack2);
     //console.log(this.piecesArray);
     //console.log(pawnWhite);
   }
