@@ -1,7 +1,7 @@
 import { NULL_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ChessPiece } from '../models/chess-piece.model';
 
-export class Rook extends ChessPiece {
+export class Queen extends ChessPiece {
   constructor(id?: string, name?: string, value?: number, team?: string, active?: boolean, position?: string, potentialMoves?: string[],
     underAttack?: boolean, canAttack?: boolean, touched?: boolean, imgUrl?: string) {
     super();
@@ -21,11 +21,16 @@ export class Rook extends ChessPiece {
   calculatePotentialMoves(chessPiecesArray: ChessPiece[]) {
     this.potentialMoves = [];
 
+    this.checkDiagonalUpRight(chessPiecesArray, this.team, this.position);
+    this.checkDiagonalDownRight(chessPiecesArray, this.team, this.position);
+    this.checkDiagonalUpLeft(chessPiecesArray, this.team, this.position);
+    this.checkDiagonalDownLeft(chessPiecesArray, this.team, this.position);
+
     this.checkMoveUp(chessPiecesArray, this.team, this.position);
     this.checkMoveDown(chessPiecesArray, this.team, this.position);
     this.checkMoveLeft(chessPiecesArray, this.team, this.position);
     this.checkMoveRight(chessPiecesArray, this.team, this.position);
- 
+
   }
 
 

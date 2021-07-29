@@ -3,6 +3,7 @@ import { ChessPiece } from '../models/chess-piece.model';
 import { Pawn } from '../models/pawn.model';
 import { Rook } from '../models/rook.model';
 import { Bishop } from './bishop.model';
+import { Queen } from '../models/queen.model';
 
 export class Chessboard {
   constructor() {
@@ -78,7 +79,10 @@ export class Chessboard {
     let bishopWhite2: ChessPiece = new Bishop('61', 'bishop', 3, 'white', true, '61', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_blt60.png');
     let bishopBlack1: ChessPiece = new Bishop('62', 'bishop', 3, 'black', true, '2', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/8/81/Chess_bdt60.png');
     let bishopBlack2: ChessPiece = new Bishop('63', 'bishop', 3, 'black', true, '5', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/8/81/Chess_bdt60.png');
-    this.piecesArray.push(pawnWhite1, pawnWhite2, pawnWhite3, pawnWhite4, pawnWhite5, pawnWhite6, pawnWhite7, pawnWhite8, pawnBlack1, pawnBlack2, pawnBlack3, pawnBlack4, pawnBlack5, pawnBlack6, pawnBlack7, pawnBlack8, rookWhite1, rookWhite2, rookBlack1, rookBlack2, bishopWhite1, bishopWhite2, bishopBlack1, bishopBlack2);
+
+    let queenWhite: ChessPiece = new Queen('70', 'queen', 9, 'white', true, '59', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/4/49/Chess_qlt60.png');
+    let queenBlack: ChessPiece = new Queen('71', 'queen', 9, 'black', true, '3', [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/a/af/Chess_qdt60.png');
+    this.piecesArray.push(pawnWhite1, pawnWhite2, pawnWhite3, pawnWhite4, pawnWhite5, pawnWhite6, pawnWhite7, pawnWhite8, pawnBlack1, pawnBlack2, pawnBlack3, pawnBlack4, pawnBlack5, pawnBlack6, pawnBlack7, pawnBlack8, rookWhite1, rookWhite2, rookBlack1, rookBlack2, bishopWhite1, bishopWhite2, bishopBlack1, bishopBlack2, queenWhite, queenBlack);
     //console.log(this.piecesArray);
     //console.log(pawnWhite);
   }
