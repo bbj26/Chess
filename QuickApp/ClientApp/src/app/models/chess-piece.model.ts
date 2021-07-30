@@ -38,6 +38,7 @@ export class ChessPiece {
     return this.boardBorders.bottom.some(position => position == this.position);
   }
 
+  // Functions for Queen, Bishop and Rook
   checkDiagonalUpRight(chessPiecesArray: ChessPiece[], thisTeam, thisPosition) {
 
     if (this.boardBorders.right.some(pos => pos == thisPosition) == false) {
@@ -191,6 +192,7 @@ export class ChessPiece {
       }
     }
   }
+  //
 
   calculatePotentialMoves(chessPiecesArray: ChessPiece[]) {
   }
