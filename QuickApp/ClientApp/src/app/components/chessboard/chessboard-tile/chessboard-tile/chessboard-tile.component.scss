@@ -1,0 +1,19 @@
+.chessboard-tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    font-size: 8px;
+}
+
+.black-tile {
+    background-color: rgb(66, 55, 55);
+    color: white;
+}
+
+.white-tile {
+  background-color: white;
+  color: black;
+}
+

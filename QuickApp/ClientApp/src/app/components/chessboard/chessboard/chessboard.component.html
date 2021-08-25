@@ -1,0 +1,32 @@
+<div id="container" (click)="checkGameOver()">
+
+  <app-pawn-promotion [promotionInfo]="chessboard.promotion" *ngIf="chessboard.promotion.active && !chessboard.promotion.chessBot && chessboard.promotion.team == 'white'"
+                      (promotionEvent)="recievePromotionInfo($event)">
+
+  </app-pawn-promotion>
+
+  <div *ngIf="!chessboard.promotion.active" class="name-tag">{{player2.playerName}}</div>
+
+  <div id="boardContainer">
+    <app-chessboard-tile class="tile" *ngFor="let mark of chessboard.chessboardMarks; let i = index"
+                         [tileMark]="chessboard.chessboardMarks[i]"
+                         [tileColor]="chessboard.tileColors[i]"
+                         [tileNumber]="chessboard.tileNumbers[i]"
+                         [chessPieces]="chessboard.piecesArray"
+                         [kingChecked]="chessboard.kingChecked"
+                         (tileEvent)="attemptMovePiece($event)">
+    </app-chessboard-tile>
+  </div>
+
+  <div *ngIf="!chessboard.promotion.active" class="name-tag">{{player1.playerName}}</div>
+
+  <app-pawn-promotion [promotionInfo]="chessboard.promotion" *ngIf="chessboard.promotion.active && !chessboard.promotion.chessBot && chessboard.promotion.team == 'black'"
+                      (promotionEvent)="recievePromotionInfo($event)">
+
+  </app-pawn-promotion>
+
+</div>
+
+
+
+

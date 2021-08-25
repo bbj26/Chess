@@ -1,0 +1,8 @@
+<div class="chessboard-tile" [ngClass]="tileColor == 'white' ? 'white-tile' : 'black-tile'"
+     (click)="handleClick()"> 
+  <app-chess-piece [occupiedTileNo]="tileNumber" [chessPieces]="chessPieces" [kingChecked]="kingChecked"></app-chess-piece>
+</div>
+
+
+
+

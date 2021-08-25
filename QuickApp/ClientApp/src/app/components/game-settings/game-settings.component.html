@@ -1,0 +1,24 @@
+<form #gameSettingsForm="ngForm" (ngSubmit)="onSubmit()" [hidden]="!submitted">
+
+  <h3>Select your preferred match settings</h3>
+
+  <div>
+    <label for="duration">Match duration</label>
+    <select class="form-control" id="duration" required
+            [(ngModel)]="model.duration" name="duration">
+      <option *ngFor="let duration of durations" [value]="duration">{{duration}}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="colour">Preferred colour</label>
+    <select class="form-control" id="colour" required
+            [(ngModel)]="model.colour" name="colour">
+      <option *ngFor="let colour of colours" [value]="colour">{{colour}}</option>
+    </select>
+  </div>
+  <br />
+  <button type="submit" class="btn btn-success" [disabled]="!gameSettingsForm.form.valid">Confirm</button>
+</form>
+
+

@@ -1,0 +1,9 @@
+<div class="player-details-container">
+    <h2>Player Details</h2>
+    <mat-card class="info-field" *ngIf="playerDetails">Name: {{playerDetails.playerName}}</mat-card>
+    <mat-card class="info-field" *ngIf="playerDetails">Matches played: {{playerDetails.matchesPlayed}}</mat-card>
+    <mat-card class="info-field" *ngIf="playerDetails">Wins: {{playerDetails.wins}}</mat-card>
+    <mat-card class="info-field" *ngIf="playerDetails">Points: {{playerDetails.points}} </mat-card>
+</div>
+
+

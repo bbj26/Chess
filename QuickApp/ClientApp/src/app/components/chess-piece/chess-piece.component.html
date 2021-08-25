@@ -1,0 +1,3 @@
+<div *ngIf="getCurrentPiece()" [ngClass]="checkForCheck().check == true && getCurrentPiece() == checkForCheck().attackedKing ? 'checked-king' : unchecked-king" >
+  <img class="piece" [src]="pieceImageUrl" alt="chess piece image" />
+</div>

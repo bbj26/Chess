@@ -62,6 +62,17 @@ import { UserPreferencesComponent } from './components/controls/user-preferences
 import { UsersManagementComponent } from './components/controls/users-management.component';
 import { RolesManagementComponent } from './components/controls/roles-management.component';
 import { RoleEditorComponent } from './components/controls/role-editor.component';
+import { GameSettingsComponent } from './components/game-settings/game-settings.component';
+import { ChessboardComponent } from './components/chessboard/chessboard/chessboard.component';
+import { ChessboardTileComponent } from './components/chessboard/chessboard-tile/chessboard-tile/chessboard-tile.component';
+import { ChessPieceComponent } from './components/chess-piece/chess-piece.component';
+import { PawnPromotionComponent } from './components/pawn-promotion/pawn-promotion.component';
+import { PlayerComponent } from './components/player/player.component';
+import { GameEngineComponent } from './components/game-engine/game-engine.component';
+import { RankingComponent } from './components/ranking/ranking.component';
+import { ViewPlayerComponent } from './components/view-player/view-player.component';
+import { PlayVersusAIComponent } from './components/play-versus-ai/play-versus-ai.component';
+import { DeclareWinnerComponent } from './components/declare-winner/declare-winner.component';
 
 
 @NgModule({
@@ -86,7 +97,7 @@ import { RoleEditorComponent } from './components/controls/role-editor.component
     BsDropdownModule.forRoot(),
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
-    ChartsModule
+    ChartsModule,
   ],
   declarations: [
     AppComponent,
@@ -108,7 +119,18 @@ import { RoleEditorComponent } from './components/controls/role-editor.component
     AutofocusDirective,
     BootstrapTabDirective,
     BootstrapToggleDirective,
-    GroupByPipe
+    GroupByPipe,
+    GameSettingsComponent,
+    ChessboardComponent,
+    ChessboardTileComponent,
+    ChessPieceComponent,
+    PawnPromotionComponent,
+    PlayerComponent,
+    GameEngineComponent,
+    RankingComponent,
+    ViewPlayerComponent,
+    PlayVersusAIComponent,
+    DeclareWinnerComponent
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },

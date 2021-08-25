@@ -4,7 +4,7 @@
   <nav id="header" class="app-component navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
       <a ngPreserveWhitespaces class="app-component navbar-brand" routerLink="/">
-        <img src="assets/images/logo-white.png" class="d-inline-block align-top" alt="logo">
+        <img src="assets/images/chess-logo.png" class="d-inline-block align-top" alt="logo">
         <span class="app-component appTitle">{{appTitle}}</span>
       </a>
       <button type="button" class="app-component navbar-toggler" data-toggle="collapse" data-target=".menuItemsContainer.app-component">
@@ -16,17 +16,14 @@
           <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link" routerLink=""><i class="fa fa-home"></i></a>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="canViewCustomers">
-            <a class="nav-link" routerLink="/customers">{{'mainMenu.Customers' | translate}}</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="canViewProducts">
-            <a class="nav-link" routerLink="/products">{{'mainMenu.Products' | translate}}</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="canViewOrders">
-            <a class="nav-link" routerLink="/orders">{{'mainMenu.Orders' | translate}}</a>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/play">Play with friend</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="/about">{{'mainMenu.About' | translate}}</a>
+            <a class="nav-link" routerLink="/playAI">Play with Chess Bot</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/players-ranking">Player rankings</a>
           </li>
         </ul>
         <ul class="app-component nav nav-pills flex-column flex-lg-row mr-md-2">
@@ -72,7 +69,7 @@
         Loaded!
       </h1>
       <p>
-        QUICK APPLICATION SYSTEM - <span style="font-style:italic">quick</span>App &copy; <a href="https://www.ebenmonney.com">WWW.EBENMONNEY.COM</a>
+        <span style="font-style:italic">Chess</span>App &copy; 
       </p>
 
     </div>
@@ -86,9 +83,8 @@
   <footer class="app-component footer fixed-bottom">
     <div class="container">
       <p class="text-center text-muted">
-        <span style="font-style:italic">quick</span>App &copy; {{getYear()}}
-        <a href="https://www.ebenmonney.com" target="_blank">www.ebenmonney.com</a>
-        <!--<span class="small display-none">- Powered by <a href="https://www.ebenmonney.com/quickapp" target="_blank"><span style="font-style:italic">quick</span>App</a></span>-->
+        <span style="font-style:italic">Chess</span>App &copy; {{getYear()}}
+        B. Corluka
       </p>
     </div>
   </footer>
