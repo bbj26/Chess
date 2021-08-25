@@ -1,5 +1,6 @@
 import { NULL_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ChessPiece } from '../models/chess-piece.model';
+import { Pawn } from '../models/pawn.model';
 
 export class King extends ChessPiece {
   constructor(id?: string, name?: string, value?: number, team?: string, active?: boolean, position?: string, potentialMoves?: string[],
@@ -105,8 +106,6 @@ export class King extends ChessPiece {
       }
     }
   }
-
-
 
   calculatePotentialMoves(chessPiecesArray: ChessPiece[]) {
     this.potentialMoves = [];

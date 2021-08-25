@@ -17,7 +17,7 @@ export class PawnPromotionComponent implements OnInit {
   @Output() promotionEvent: EventEmitter<any> = new EventEmitter<any>();
 
   pickPromotionPiece($event) {
-    console.log("clicked on " + $event.target.id);
+    //console.log("clicked on " + $event.target.id);
     let promotionData = $event.target.id
     this.promotionEvent.emit(promotionData);
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { ChessPiece } from '../../../../models/chess-piece.model'
+import { King } from '../../../../models/king.model';
 
 @Component({
   selector: 'app-chessboard-tile',
@@ -12,13 +13,24 @@ export class ChessboardTileComponent implements OnInit {
   @Input() public tileColor = '';
   @Input() public tileNumber = '';
   @Input() public chessPieces: ChessPiece[];
+  @Input() public kingChecked: {
+    check: boolean,
+    attackedKing: ChessPiece,
+    attacker: ChessPiece
+  };
   @Output() tileEvent: EventEmitter<any> = new EventEmitter<any>();
- 
-  constructor() { }
+
+
+  constructor() {
+    this.kingChecked = {
+      attacker: new ChessPiece(),
+      attackedKing: new ChessPiece(),
+      check: false
+    }}
 
   ngOnInit(): void {
+    
   }
-
 
   public occupiedByPiece: ChessPiece = new ChessPiece();
 
@@ -57,7 +69,6 @@ export class ChessboardTileComponent implements OnInit {
       this.tileEvent.emit(dataToSendToChessboard);
     }
   }
-
 
 }
 

@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="choose-players" *ngIf="!selectionFormSubmitted">
+    <div>
+      <h4>Play with existing players?</h4>
+    </div>
+    <div class="btn-container">
+      <button class="select-btn" (click)="existingPlayers()">Yes</button>
+      <button class="select-btn" (click)="newPlayers()">No, create new</button>
+    </div>
+  </div>
+
+  <div class="player-creation-container" *ngIf="!createPlayer1FormSubmited && createNewPlayers">
+    <form #addPlayer1Form="ngForm" (ngSubmit)="createPlayer1()" class="create-form">
+        <h4>Create Player 1</h4>
+        <div>
+          <input type="text" name="playername" [(ngModel)]="player1.playerName" placeholder="Player 1 name" required />
+        </div>
+      <button type="submit" class="select-btn" [disabled]="!addPlayer1Form.valid">Create</button>
+    </form>
+  </div>
+
+  <div class="player-creation-container" *ngIf="!createPlayer2FormSubmited && createNewPlayers">
+    <form #addPlayer2Form="ngForm" (ngSubmit)="createPlayer2()" class="create-form">
+        <h4>Create Player 2</h4>
+        <div>
+          <input type="text" name="playername" [(ngModel)]="player2.playerName" placeholder="Player 2 name" required />
+        </div>
+      <button type="submit" class="select-btn" [disabled]="!addPlayer2Form.valid">Create</button>
+    </form>
+  </div>
+
+  <div class="player-selection-container" *ngIf="playWithExistingPlayers && (!existingPlayer1SelectionFormSubmitted || !existingPlayer2SelectionFormSubmitted)">
+    <div *ngIf="!existingPlayer1SelectionFormSubmitted" class="select-player-div">
+      <h5>Select player 1</h5>
+      <form #f="ngForm" (ngSubmit)="addExistingPlayer1ToGame()" class="select-players-form">
+        <select name="selectedPlayer" [(ngModel)]="existingPlayer1">
+          <option *ngFor="let player of storedPlayers" [ngValue]="player">
+            {{ player.playerName }}
+          </option>
+        </select>
+        <button type="submit" class="select-btn" [disabled]="!f.valid">Select</button>
+      </form>
+    </div>
+
+    <div *ngIf="!existingPlayer2SelectionFormSubmitted" class="select-player-div">
+      <h5>Select player 2</h5>
+      <form #f="ngForm" (ngSubmit)="addExistingPlayer2ToGame()" class="select-players-form">
+        <select name="selectedPlayer" [(ngModel)]="existingPlayer2">
+          <option *ngFor="let player of storedPlayers" [ngValue]="player">
+            {{ player.playerName }}
+          </option>
+        </select>
+        <button type="submit" class="select-btn" [disabled]="!f.valid">Select</button>
+      </form>
+    </div>
+
+  </div>
+
+  <app-chessboard *ngIf="((createPlayer1FormSubmited && createPlayer2FormSubmited) || 
+  (existingPlayer1SelectionFormSubmitted && existingPlayer2SelectionFormSubmitted)) && !updatedData" [player1]="player1"
+    [player2]="player2" (gameOverEvent)="gameOver($event)">
+  </app-chessboard>
+
+  <app-declare-winner *ngIf="updatedData" [winner]="_winner"></app-declare-winner>
+
+</div>

@@ -18,6 +18,10 @@ export class ChessPiece {
       top: ['0', '1', '2', '3', '4', '5', '6', '7'],
       bottom: ['56', '57', '58', '59', '60', '61', '62', '63'],
     };
+    this.jumpedTwoTiles = {
+      jumped: false,
+      roundNo: 0
+    }
   }
 
   
@@ -214,4 +218,9 @@ export class ChessPiece {
     top: string[],
     bottom: string[]
   };
+  public jumpedTwoTiles: {
+    jumped: boolean;
+    roundNo: number;
+  }
+  public potentialTwoTilesJumpMoves: string[];
 }

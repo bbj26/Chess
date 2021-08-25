@@ -3,7 +3,6 @@
 // www.ebenmonney.com/templates
 // =============================
 
-using AutoMapper;
 using DAL;
 using DAL.Core;
 using DAL.Core.Interfaces;
@@ -25,6 +24,7 @@ using QuickApp.Helpers;
 using System;
 using System.Collections.Generic;
 using AppPermissions = DAL.Core.ApplicationPermissions;
+using QuickApp.ViewModels;
 
 namespace QuickApp
 {
@@ -169,6 +169,10 @@ namespace QuickApp
 
             // DB Creation and Seeding
             services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
+
+            services.AddDbContext<PlayerDetailContex>(options =>
+            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            
         }
 
 

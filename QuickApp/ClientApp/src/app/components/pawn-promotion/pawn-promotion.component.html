@@ -1,11 +1,11 @@
-<div id="container-black" *ngIf="promotionInfo.team == 'black'" (click)="pickPromotionPiece($event)">
+<div id="container-black" *ngIf="promotionInfo.team == 'black' && !promotionInfo.chessBot" (click)="pickPromotionPiece($event)">
   <img id="queen-black" src="https://upload.wikimedia.org/wikipedia/commons/a/af/Chess_qdt60.png" alt="promotion queen img" />
   <img id="rook-black" src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Chess_rdt60.png" alt="promotion rook img" />
   <img id="knight-black" src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Chess_ndt60.png" alt="promotion knight img" />
   <img id="bishop-black" src="https://upload.wikimedia.org/wikipedia/commons/8/81/Chess_bdt60.png" alt="promotion bishop img" />
 </div>
 
-<div id="container-white" *ngIf="promotionInfo.team == 'white'" (click)="pickPromotionPiece($event)">
+<div id="container-white" *ngIf="promotionInfo.team == 'white' && !promotionInfo.chessBot" (click)="pickPromotionPiece($event)">
   <img id="queen-white" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Chess_qlt60.png" alt="promotion queen img" />
   <img id="rook-white" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Chess_rlt60.png" alt="promotion rook img" />
   <img id="knight-white" src="https://upload.wikimedia.org/wikipedia/commons/2/28/Chess_nlt60.png" alt="promotion knight img" />

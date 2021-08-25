@@ -17,6 +17,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { Utilities } from './services/utilities';
+import { GameEngineComponent } from './components/game-engine/game-engine.component';
+import { RankingComponent } from './components/ranking/ranking.component';
+import { ViewPlayerComponent } from './components/view-player/view-player.component';
+import { PlayVersusAIComponent } from './components/play-versus-ai/play-versus-ai.component';
 
 
 @Injectable()
@@ -50,6 +54,10 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard], data: { title: 'Settings' } },
   { path: 'about', component: AboutComponent, data: { title: 'About Us' } },
   { path: 'home', redirectTo: '/', pathMatch: 'full' },
+  { path: 'play', component: GameEngineComponent },
+  { path: 'playAI', component: PlayVersusAIComponent},
+  { path: 'players-ranking', component: RankingComponent},
+  { path: 'players-ranking/player/:id', component: ViewPlayerComponent},
   { path: '**', component: NotFoundComponent, data: { title: 'Page Not Found' } }
 ];
 

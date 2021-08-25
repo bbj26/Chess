@@ -15,60 +15,83 @@ export class Pawn extends ChessPiece {
     this.canAttack = canAttack;
     this.touched = touched;
     this.imgUrl = imgUrl;
+    this.jumpedTwoTiles = {
+      jumped: false,
+      roundNo: 0
+    }
   }
 
+  public potentialPawnAttacks = [];
+  public jumpedTwoTiles: {
+    jumped: boolean;
+    roundNo: number;
+  }
+  public potentialTwoTilesJumpMoves = [];
   public potentialEnPassantMoves = [];
   
   checkEnPassant(chessPiecesArray: ChessPiece[], thisTeam) {
     this.potentialEnPassantMoves = [];
-    //pawn eats opponents pawn next to it horizontally, when on his team's half of chessboard - EN PASSANT
-    chessPiecesArray.forEach(piece => {
-      //check if white pawn is on its half
-      if (Number(this.position) >= 32 && thisTeam == "white") {
-
-        //push enpassant move to potential moves array if all reqs are satisfied
-        if (this.checkPositionLeftBorder() == true) {
-          if (piece.name == 'pawn' && piece.team == "black" && piece.position == (Number(this.position) + 1).toString()) {
-            this.potentialMoves.push((Number(piece.position) - 8).toString());
-            this.potentialEnPassantMoves.push((Number(piece.position) - 8).toString());
-            this.canAttack == true;
+    let opponentsPawns = chessPiecesArray.filter(pawn => pawn.team != thisTeam);
+    if (this.checkPositionLeftBorder() == true) {
+      if (opponentsPawns.some(pawn => pawn.position == (Number(this.position) + 1).toString() && pawn.jumpedTwoTiles.jumped == true)) {
+        switch (this.team) {
+          case 'white': {
+            this.potentialEnPassantMoves.push((Number(this.position) - 7).toString());
+            //this.potentialMoves.push((Number(this.position) - 7).toString());
+            break;
           }
-        } else if (this.checkPositionRightBorder() == true) {
-          if (piece.name == 'pawn' && piece.team == "black" && piece.position == (Number(this.position) - 1).toString()) {
-            this.potentialMoves.push((Number(piece.position) - 8).toString());
-            this.potentialEnPassantMoves.push((Number(piece.position) - 8).toString());
-            this.canAttack == true;
-          }
-        } else {
-          if (piece.name == 'pawn' && piece.team == "black" && (piece.position == (Number(this.position) + 1).toString() || piece.position == (Number(this.position) - 1).toString())) {
-            this.potentialMoves.push((Number(piece.position) - 8).toString());
-            this.potentialEnPassantMoves.push((Number(piece.position) - 8).toString());
-            this.canAttack == true;
-          }
-        }
-      } else if (Number(this.position) <= 31 && thisTeam == "black") {
-
-        if (this.checkPositionLeftBorder() == true) {
-          if (piece.name == 'pawn' && piece.team == "white" && piece.position == (Number(this.position) + 1).toString()) {
-            this.potentialMoves.push((Number(piece.position) + 8).toString());
-            this.potentialEnPassantMoves.push((Number(piece.position) + 8).toString());
-            this.canAttack == true;
-           }
-        } else if (this.checkPositionRightBorder() == true) {
-          if (piece.name == 'pawn' && piece.team == "white" && piece.position == (Number(this.position) - 1).toString()) {
-            this.potentialMoves.push((Number(piece.position) + 8).toString());
-            this.potentialEnPassantMoves.push((Number(piece.position) + 8).toString());
-            this.canAttack == true;
-          }
-        } else {
-          if (piece.name == 'pawn' && piece.team == "white" && (piece.position == (Number(this.position) + 1).toString() || piece.position == (Number(this.position) - 1).toString())) {
-            this.potentialMoves.push((Number(piece.position) + 8).toString());
-            this.potentialEnPassantMoves.push((Number(piece.position) + 8).toString());
-            this.canAttack == true;
+          case 'black': {
+            this.potentialEnPassantMoves.push((Number(this.position) + 9).toString());
+            //this.potentialMoves.push((Number(this.position) + 9).toString());
+            break;
           }
         }
       }
-    })
+    } else if (this.checkPositionRightBorder() == true) {
+      if (opponentsPawns.some(pawn => pawn.position == (Number(this.position) - 1).toString() && pawn.jumpedTwoTiles.jumped == true)) {
+        switch (this.team) {
+          case 'white': {
+            this.potentialEnPassantMoves.push((Number(this.position) - 9).toString());
+            //this.potentialMoves.push((Number(this.position) - 9).toString());
+            break;
+          }
+          case 'black': {
+            this.potentialEnPassantMoves.push((Number(this.position) + 7).toString());
+            //this.potentialMoves.push((Number(this.position) + 7).toString());
+            break;
+          }
+        }
+      }
+    } else {
+      if (opponentsPawns.some(pawn => pawn.position == (Number(this.position) - 1).toString() && pawn.jumpedTwoTiles.jumped == true)) {
+        switch (this.team) {
+          case 'white': {
+            this.potentialEnPassantMoves.push((Number(this.position) - 9).toString());
+            //this.potentialMoves.push((Number(this.position) - 9).toString());
+            break;
+          }
+          case 'black': {
+            this.potentialEnPassantMoves.push((Number(this.position) + 7).toString());
+            //this.potentialMoves.push((Number(this.position) + 7).toString());
+            break;
+          }
+        }
+      }
+      if (opponentsPawns.some(pawn => pawn.position == (Number(this.position) + 1).toString() && pawn.jumpedTwoTiles.jumped == true)) {
+        switch (this.team) {
+          case 'white': {
+            this.potentialEnPassantMoves.push((Number(this.position) - 7).toString());
+            //this.potentialMoves.push((Number(this.position) - 7).toString());
+            break;
+          }
+          case 'black': {
+            this.potentialEnPassantMoves.push((Number(this.position) + 9).toString());
+            //this.potentialMoves.push((Number(this.position) + 9).toString());
+            break;
+          }
+        }
+      }
+    }
   }
   checkMovePawnUp(chessPiecesArray: ChessPiece[], thisTeam) {
     let currentPosition = this.position;
@@ -93,6 +116,7 @@ export class Pawn extends ChessPiece {
       });
       if (newPotentialPositionOccupied == false && this.touched == false) {
         this.potentialMoves.push(newPotentialPosition2);
+        this.potentialTwoTilesJumpMoves.push(newPotentialPosition2);
       };
 
     } else if (thisTeam == 'black') {
@@ -116,6 +140,7 @@ export class Pawn extends ChessPiece {
       })
       if (newPotentialPositionOccupied == false && this.touched == false) {
         this.potentialMoves.push(newPotentialPosition2);
+        this.potentialTwoTilesJumpMoves.push(newPotentialPosition2);
       }
     }
   }
@@ -162,6 +187,7 @@ export class Pawn extends ChessPiece {
       }      
     });
     this.potentialMoves = this.potentialMoves.concat(potentialAttacks);
+    this.potentialPawnAttacks = potentialAttacks;
     //console.log(this.position + "    " + this.potentialMoves);
 
   }

@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Chessboard } from '../../../models/chessboard.model';
 import { ChessPiece } from '../../../models/chess-piece.model';
+import { Rook } from '../../../models/rook.model';
+import { Bishop } from '../../../models/bishop.model';
+import { Queen } from '../../../models/queen.model';
+import { Knight } from '../../../models/knight.model';
+import { Player } from '../../../models/player.model';
 
 @Component({
   selector: 'app-chessboard',
@@ -9,6 +14,12 @@ import { ChessPiece } from '../../../models/chess-piece.model';
 })
 export class ChessboardComponent implements OnInit {
 
+  @Input() player1: Player = new Player();
+  @Input() player2: Player = new Player();
+  @Input() chessBotColour = '';
+
+  @Output() gameOverEvent: EventEmitter<any> = new EventEmitter<any>()
+
   public chessboard: Chessboard;
 
   public pieceToMove;
@@ -16,15 +27,22 @@ export class ChessboardComponent implements OnInit {
   public moveStartPoint = "";
   public moveEndPoint = "";
   
-
+  public playingVersusChessBot: boolean = false;
+  public playersTurn: boolean = false;
   constructor() {
     this.chessboard = new Chessboard();
   }
 
   ngOnInit(): void {
+    this.playingVersusChessBot = false;
+    this.playersTurn = false;
+    this.chessboard.chessBotColour = this.chessBotColour;
+
     this.chessboard.markBoard();
     this.chessboard.createPieces();
+    this.chessboard.startChessBot();
   }
+
 
   resetMovePoints() {
     this.moveStartPoint = "";
@@ -63,40 +81,48 @@ export class ChessboardComponent implements OnInit {
   }
 
   public recievePromotionInfo($event) {
-    console.log("Parent: " + $event);
+    //console.log("Parent: " + $event);
     let promotedToPiece = $event;
-    console.log(promotedToPiece);
+    //console.log(promotedToPiece);
     switch (promotedToPiece) {
       case 'queen-black': {
-        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, new ChessPiece('100', 'queen', 8, 'black', true, this.chessboard.promotion.tileNumber, [], false, true, true, 'https://upload.wikimedia.org/wikipedia/commons/a/af/Chess_qdt60.png'));
+        let queenBlack: ChessPiece = new Queen('110', 'queen', 9, 'black', true, this.chessboard.promotion.tileNumber, [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/a/af/Chess_qdt60.png');
+        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, queenBlack);
         break;
       }
       case 'rook-black': {
-        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, new ChessPiece('101', 'rook', 5, 'black', true, this.chessboard.promotion.tileNumber, [], false, true, true, 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Chess_rdt60.png'));
+        let blackRook: ChessPiece = new Rook('106', 'rook', 5, 'black', true, this.chessboard.promotion.tileNumber, [], false, true, true, 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Chess_rdt60.png')
+        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, blackRook);
         break;
       }
       case 'knight-black': {
-        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, new ChessPiece('102', 'knight', 3, 'black', true, this.chessboard.promotion.tileNumber, [], false, true, true, 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Chess_ndt60.png'));
+        let knightBlack: ChessPiece = new Knight('120', 'knight', 3, 'black', true, this.chessboard.promotion.tileNumber, [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Chess_ndt60.png');
+        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, knightBlack);
         break;
       }
       case 'bishop-black': {
-        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, new ChessPiece('103', 'bishop', 3, 'black', true, this.chessboard.promotion.tileNumber, [], false, true, true, 'https://upload.wikimedia.org/wikipedia/commons/8/81/Chess_bdt60.png'));
+        let blackBishop: ChessPiece = new Bishop('108', 'bishop', 3, 'black', true, this.chessboard.promotion.tileNumber, [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_blt60.png');
+        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, blackBishop);
         break;
       }
       case 'queen-white': {
-        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, new ChessPiece('104', 'queen', 8, 'white', true, this.chessboard.promotion.tileNumber, [], false, true, true, 'https://upload.wikimedia.org/wikipedia/commons/4/49/Chess_qlt60.png'));
+        let queenWhite: ChessPiece = new Queen('111', 'queen', 9, 'white', true, this.chessboard.promotion.tileNumber, [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/4/49/Chess_qlt60.png');
+        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, queenWhite);
         break;
       }
       case 'rook-white': {
-        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, new ChessPiece('105', 'rook', 5, 'white', true, this.chessboard.promotion.tileNumber, [], false, true, true, 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chess_rlt60.png'));
+        let whiteRook: ChessPiece = new Rook('105', 'rook', 5, 'white', true, this.chessboard.promotion.tileNumber, [], false, true, true, 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chess_rlt60.png')
+        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, whiteRook);
         break;
       }
       case 'knight-white': {
-        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, new ChessPiece('106', 'knight', 3, 'white', true, this.chessboard.promotion.tileNumber, [], false, true, true, 'https://upload.wikimedia.org/wikipedia/commons/2/28/Chess_nlt60.png'));
+        let knightWhite: ChessPiece = new Knight('121', 'knight', 3, 'white', true, this.chessboard.promotion.tileNumber, [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/2/28/Chess_nlt60.png');
+        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, knightWhite);
         break;
       }
       case 'bishop-white': {
-        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, new ChessPiece('107', 'bishop', 3, 'white', true, this.chessboard.promotion.tileNumber, [], false, true, true, 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_blt60.png'));
+        let whiteBishop: ChessPiece = new Bishop('107', 'bishop', 3, 'white', true, this.chessboard.promotion.tileNumber, [], false, true, false, 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_blt60.png');
+        this.chessboard.piecesArray.splice(this.chessboard.promotion.pawnIndex, 1, whiteBishop);
         break;
       }
     }
@@ -104,6 +130,20 @@ export class ChessboardComponent implements OnInit {
     this.chessboard.promotion.pawnIndex = 0;
     this.chessboard.promotion.team = '';
     this.chessboard.promotion.tileNumber = '';
+  }
+
+  checkGameOver() {
+    if (this.chessboard.gameOver == true) {
+      console.log(this.chessboard.winner);
+      if (this.chessboard.winner == 'white') {
+        console.log(this.player1.playerName + "wins!")
+        this.gameOverEvent.emit(this.player1);
+      } else {
+        console.log(this.player2.playerName + "wins!")
+        this.gameOverEvent.emit(this.player2);
+
+      }
+    }
   }
 
 }

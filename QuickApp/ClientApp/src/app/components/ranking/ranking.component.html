@@ -1,0 +1,14 @@
+<div class="list-container">
+    <h3 *ngIf="playersList">Total players: {{playersList.length}}</h3>
+    <h4 *ngIf="rankedList">Ranked players: {{rankedList.length}}</h4>
+
+    <mat-list role="list" *ngIf="rankedList">
+        <mat-list-item role="listitem" *ngFor="let player of rankedList" class="player-card">
+            <div>
+                <div class="player-name">{{player.playerName}} | Points: {{player.points}} | <a class="action-link" [routerLink]="['./player', player.playerId]"> View </a> </div>  
+            </div>
+        </mat-list-item>
+
+    </mat-list>
+
+</div>
